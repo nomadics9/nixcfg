@@ -600,6 +600,8 @@ in
 
       # Gnome Stuff
       gtk-engine-murrine
+      gnome-software
+      gnome-disk-utility
       gnome-text-editor
       file-roller
       gnome-calculator

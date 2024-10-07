@@ -32,12 +32,19 @@ in
       services.power-profiles-daemon.enable = false;
 
       # Enable powertop
-      #powerManagement.powertop.enable = true;
+      #powerManagement.powertop.enable = true; # Using TLP
 
       # Enable thermald (only necessary if on Intel CPUs)
       services.thermald.enable = true;
 
-      #upower
+      # Upower
       services.upower.enable = true;
+
+      # Power Alerts
+      environment.systemPackages = with pkgs; [
+        poweralertd
+      ];
     };
+
+
 }
