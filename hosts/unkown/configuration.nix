@@ -9,7 +9,7 @@
   # Nvidia
   hardware.nvidia.enable = true;
   # Battery
-  hardware.battery.enable = false;
+  hardware.battery.enable = true;
 
   # Common
   # System
