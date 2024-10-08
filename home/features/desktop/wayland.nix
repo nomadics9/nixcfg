@@ -19,7 +19,7 @@ in
           layer = "top";
           modules-left = [ "custom/launcher" "cpu" "memory" "custom/weather" "hyprland/workspaces" ];
           modules-center = [ "mpris" ];
-          modules-right = [ "network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "custom/power-menu" ];
+          modules-right = [ "network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "custom/refresh-rate" ];
 
           "hyprland/workspaces" = {
             format = "{name}";
@@ -164,16 +164,7 @@ in
             };
           };
 
-          "custom/spotify" = {
-            exec = "nix-shell ~/.config/waybar/scripts/mediaplayer.py --player youtube-music";
-            format = " {}";
-            return-type = "json";
-            on-click = "playerctl play-pause";
-            on-double-click-right = "playerctl next";
-            on-scroll-down = "playerctl previous";
-          };
-
-          "custom/power-menu" = {
+          "custom/refresh-rate" = {
             format = "{percentage}Hz";
             on-click = "~/.config/hypr/scripts/screenHz.sh";
             return-type = "json";
@@ -189,7 +180,7 @@ in
 
           "custom/wallpaper" = {
             format = "󰸉";
-            on-click = "bash ~/.config/waybar/scripts/changewallpaper.sh";
+            on-click = "bash ~/.config/hypr/scripts/changewallpaper.sh";
           };
         };
       };
@@ -449,7 +440,7 @@ in
             margin-bottom: 7px;
           }
 
-          #custom-power-menu {
+          #custom-refresh-rate {
             color: #8a909e;
             margin-right: 12px;
             border-radius: 8px;
@@ -465,7 +456,7 @@ in
           }
           #custom-wallpaper,
           #language,
-          #custom-power-menu {
+          #custom-refresh-rate {
             background-color: #252733;
             padding: 0em 2em;
 

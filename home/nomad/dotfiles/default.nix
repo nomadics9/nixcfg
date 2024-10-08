@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [
     ./bat.nix
     ./dunst.nix
@@ -14,13 +14,14 @@
     recursive = true;
   };
 
-  home.file.".config/hypr/" = {
-    source = "${inputs.dotfiles}/hypr/hyprlock/Style-2";
-    recursive = true;
-  };
-
-  home.file.".config/hypr/" = {
-    source = "${inputs.dotfiles}/hypr/hyprpaper.conf";
+  home.file.".config/hypr" = {
+    source = pkgs.symlinkJoin {
+      name = "hypr-config";
+      paths = [
+        "${inputs.dotfiles}/hypr/hyprlock/Style-2"
+        "${inputs.dotfiles}/hypr/hyprpaper"
+      ];
+    };
     recursive = true;
   };
 
