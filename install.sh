@@ -89,7 +89,7 @@ echo -e "$YELLOW Copying your hardware configurations $ENDCOLOR"
 
  cp /etc/nixos/hardware-configuration.nix ./hosts/unkown/hardware-configuration.nix
  sleep 2
- sudo nixos-rebuild boot --flake .
+ sudo nixos-rebuild boot --flake .#unkown
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
 
