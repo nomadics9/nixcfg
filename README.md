@@ -40,11 +40,11 @@ nixcfg/
 |   |   ├── users
 |   |       ├── nomad.nix
 │   ├── unkown/
-│   ├── hardware/
-|   |       ├── battery.nix
-|   |       ├── nvidia.nix
-│   ├── configuration.nix
-│   ├── hardware-configuration.nix
+│       ├── hardware/
+|       |   ├── battery.nix
+|       |   ├── nvidia.nix
+│       ├── configuration.nix
+│       ├── hardware-configuration.nix
 │
 ├── overlays/
 ├── pkgs/
