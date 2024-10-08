@@ -175,7 +175,7 @@ in
 
           "custom/launcher" = {
             format = "󱄅";
-            on-click = "rofi -show drun &";
+            on-click = "wofi --show drun --allow-images";
           };
 
           "custom/wallpaper" = {
