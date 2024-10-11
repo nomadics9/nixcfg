@@ -1,6 +1,7 @@
 {
   imports = [
     ./vm.nix
+    ./vfio.nix
     ./steam.nix
     ./polkit.nix
     ./appimage.nix

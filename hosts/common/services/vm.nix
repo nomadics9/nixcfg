@@ -24,6 +24,7 @@ in
       win-virtio
       win-spice
       adwaita-icon-theme
+      virtiofsd
       #bridge-utils
     ];
 

@@ -17,8 +17,9 @@
   common.services.xdgportal.enable = true;
   # Filemanager
   common.services.nautilus.enable = true;
-  # Virtual Box (Virt-Manager)
-  common.services.vm.enable = false;
+  # Virtual Box (Virt-Manager) and GPU Passthru. you have to configure hosts/services/vfio.nix for passthrough to work!
+  common.services.vm.enable = true;
+  common.services.vfio.enable = false;
   # AppStores
   common.services.appimage.enable = true;
   common.services.steam.enable = true;
