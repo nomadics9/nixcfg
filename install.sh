@@ -82,6 +82,10 @@ sed -i "s/services.flatpak.enable = .*/services.flatpak.enable = $flatpak_respon
 vm_response=$(ask_yes_no "Do you want vm and virtmanager to be enabled")
 sed -i "s/common.services.vm.enable = .*/common.services.vm.enable = $vm_response;/" "$config_file"
 
+echo -e "$YELLOW Recommended to not enable vfio unless you know what you are doing $ENDCOLOR"
+vfio_response=$(ask_yes_no "Do you want GPU-Passthrough to be enabled")
+sed -i "s/common.services.vfio.enable = .*/common.services.vfio.enable = $vfio_response;/" "$config_file"
+
 
 # Notify the user that the changes are complete
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
