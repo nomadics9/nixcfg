@@ -133,8 +133,8 @@ in
           "float, title:^(Media viewer)$"
           "float, title:^(Volume Control)$"
           "float, title:^(Picture-in-Picture)$"
-          "size 1200 800, title:^(Volume Control)$"
-          "move 75 44%, title:^(Volume Control)$"
+          "size 1160 960, title:^(Volume Control)$"
+          "move 5 315, title:^(Volume Control)$"
           "float, title:^(fly_is_kitty)"
         ];
 
