@@ -26,6 +26,7 @@
     vlc
     amberol
     webcord
+    bottles
     cava
     ryujinx
     mullvad-vpn
