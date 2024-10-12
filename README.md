@@ -35,6 +35,7 @@ nixcfg/
 |   |       ├── nautilus.nix
 |   |       ├── polkit.nix
 |   |       ├── steam.nix
+|   |       ├── vfio.nix
 |   |       ├── vm.nix
 |   |       ├── xdgportal.nix
 |   |   ├── users
