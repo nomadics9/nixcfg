@@ -37,6 +37,7 @@
 
 ## Configurations - optional
 For user packages you will find them in ```home/nomad/home.nix```. You can remove all packages here or keep them nothing is dependent on them.
+<br>
 ![Home](./assets/home.png)
 
 #### Nvidia users
