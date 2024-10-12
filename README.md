@@ -111,3 +111,6 @@ nixcfg/
 ├── README.md
 ```
 </details>
+
+![Visitor Count](https://profile-counter.glitch.me/nomadics9/nixcfg/count.svg)
+
