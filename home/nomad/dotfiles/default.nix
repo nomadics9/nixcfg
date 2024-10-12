@@ -20,6 +20,7 @@
       paths = [
         "${inputs.dotfiles}/hypr/hyprlock/Style-2"
         "${inputs.dotfiles}/hypr/hyprpaper"
+        "${inputs.dotfiles}/hypr/hypridle"
       ];
     };
     recursive = true;
