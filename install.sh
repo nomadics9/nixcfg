@@ -43,17 +43,17 @@ if [ -f "./hosts/common/users/$new_user.nix" ]; then
 fi
 
 # Copy the file
-echo "$YELLOW Creating user configuration for $new_user... $ENDCOLOR"
+echo -e "$YELLOW Creating user configuration for $new_user... $ENDCOLOR"
 cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
 
-echo "$YELLOW Creating user home configuration for $new_user... $ENDCOLOR"
+echo -e "$YELLOW Creating user home configuration for $new_user... $ENDCOLOR"
 mkdir "./home/$new_user"
 sleep 0.2
 cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
 cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
 cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
 
-echo "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
+echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
 
 
 
