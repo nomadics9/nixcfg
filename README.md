@@ -37,14 +37,16 @@
 * Known issue. sometimes you will get ```/boot/efi``` is not mounted partition error. In that case.
 <br>
 <br>
-    * One liner, just change YOUR-HOSTNAME accordingly to your hostname <br>
+    One liner, just change YOUR-HOSTNAME accordingly to your hostname
+<br>
 ```sed -i 's|boot.loader.efi.efiSysMountPoint = "/boot/efi";|boot.loader.efi.efiSysMountPoint = "/boot";|' ./hosts/YOUR-HOSTNAME/configuration.nix```
 <br>
 <br>
 or
 <br>
 <br>
-    * Manually <br>
+    Manually 
+<br>
 ```nano ./hosts/YOUR-HOSTNAME/configuration.nix``` change line 33 from ```boot.loader.efi.efiSysMountPoint = "/boot/efi";``` path to just <b>```/boot```</b>
 
 
