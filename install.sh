@@ -186,10 +186,10 @@ if [[ "$has_dotfiles" == "y" || "$has_dotfiles" == "yes" ]]; then
     nix flake lock --update-input dotfiles
     echo "flake.nix updated successfully!"
   else
-    echo "Invalid URL format. Please make sure to enter a valid git URL."
+    echo -e "$RED Invalid URL format. Please make sure to enter a valid git URL. $ENDCOLOR"
   fi
 else
-  echo "Skipping dotfiles URL update."
+  echo -e "$GREEN Using Nomadics dotfiles $ENDCOLOR"
 fi
 
 
