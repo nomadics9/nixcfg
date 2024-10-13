@@ -1,3 +1,4 @@
+{ user, ... }:
 {
-  imports = [ ./nomad.nix ];
+  imports = [ ./${user}.nix ];
 }

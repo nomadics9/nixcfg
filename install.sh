@@ -18,6 +18,7 @@ $ENDCOLOR
 echo 
 echo
 
+
 # Define the flake file path
 flake_file="./flake.nix"
 config_file="./hosts/unkown/configuration.nix"  # Specify the correct path for your host's configuration file
@@ -26,6 +27,35 @@ monitor_config_file="./home/nomad/unkown.nix"
 # Prompt for username and hostname
 read -p "Enter the new username: " new_user
 read -p "Enter the new hostname: " new_hostname
+
+if [ ! -f "./hosts/common/users/nomad.nix" ]; then
+  echo "Source file nomad.nix does not exist!"
+  exit 1
+fi
+
+# Check if the new file already exists
+if [ -f "./hosts/common/users/$new_user.nix" ]; then
+  read -p "File $new_user.nix already exists. Overwrite? (y/n) " choice
+  if [ "$choice" != "y" ]; then
+    echo "Aborting."
+    exit 1
+  fi
+fi
+
+# Copy the file
+echo "$YELLOW Creating user configuration for $new_user... $ENDCOLOR"
+cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
+
+echo "$YELLOW Creating user home configuration for $new_user... $ENDCOLOR"
+mkdir "./home/$new_user"
+sleep 0.2
+cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
+cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
+cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
+
+echo "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
+
+
 
 # Replace the 'user' and 'hostname' values in the flake.nix file
 sed -i "s/user = \".*\";/user = \"$new_user\";/" "$flake_file"
