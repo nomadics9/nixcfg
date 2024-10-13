@@ -17,7 +17,7 @@
 ## Screenshots
 ![Nomadics Nixos](./assets/preview2.png)
 ![Nomadics Nixos](./assets/preview3.png)
-![Nomadics Nixos](./assets/preview4.png)
+![Nomadics Nixos](./assets/neofetch.png)
 ![Nomadics Nixos](./assets/preview5.png)
 ![Nomadics Nixos](./assets/gpu-passthrough.png)
 ![Nomadics Nixos](./assets/hyprlock.png)
