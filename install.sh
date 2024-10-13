@@ -29,8 +29,8 @@ monitor_config_file="./home/$new_user/$new_hostname.nix"
 current_user=$(logname)
 
 
-if [ ! -f "./hosts/common/users/nomad.nix" ]; then
-  echo -e "$RED Source file nomad.nix does not exist! $ENDCOLOR"
+if [[ ! -f "./hosts/common/users/nomad.nix" && ! -d "./hosts/unkown/" ]]; then
+  echo -e "$RED Source files nomad.nix or ./hosts/unkown directory does not exist! $ENDCOLOR"
   exit 1
 fi
 

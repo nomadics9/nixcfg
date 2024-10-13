@@ -30,8 +30,8 @@
         "x86_64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
-      user = "nomad2";
-      hostname = "unkown2";
+      user = "nomad";
+      hostname = "unkown";
     in
     {
       packages =
