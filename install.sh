@@ -171,6 +171,28 @@ vfio_response=$(ask_yes_no "Do you want GPU-Passthrough to be enabled")
 sed -i "s/common.services.vfio.enable = .*/common.services.vfio.enable = $vfio_response;/" "$config_file"
 
 
+echo -e "$YELLOW If you want to use your repo make sure to fork mine to keep the same structure for hyprland stuff $ENDCOLOR"
+read -p "Do you have a dotfiles URL? (y/n): " has_dotfiles
+if [[ "$has_dotfiles" == "y" || "$has_dotfiles" == "yes" ]]; then
+  read -p "Please paste the dotfiles URL: " dotfiles_url
+
+  # Check if dotfiles URL is valid (basic check for http or git protocol)
+  if [[ "$dotfiles_url" =~ ^(http|https|git):// ]]; then
+    echo "Updating flake.nix with the new dotfiles URL..."
+
+    # Use sed to replace the existing dotfiles URL with the new one
+    sed -i "/dotfiles = {/,/};/s|url = \".*\";|url = \"$dotfiles_url\";|" "$flake_file"
+    sleep 0.3
+    nix flake lock --update-input dotfiles
+    echo "flake.nix updated successfully!"
+  else
+    echo "Invalid URL format. Please make sure to enter a valid git URL."
+  fi
+else
+  echo "Skipping dotfiles URL update."
+fi
+
+
 # Notify the user that the changes are complete
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
