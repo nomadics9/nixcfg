@@ -40,14 +40,14 @@
       nixosConfigurations = {
         unkown = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs user hostname; };
-          modules = [ ./hosts/unkown ];
+          modules = [ ./hosts/${hostname} ];
         };
       };
       homeConfigurations = {
         "${user}@${hostname}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs user; };
-          modules = [ ./home/nomad/unkown.nix ];
+          modules = [ ./home/${user}/${hostname}.nix ];
         };
       };
     };

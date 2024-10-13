@@ -18,16 +18,16 @@ $ENDCOLOR
 echo 
 echo
 
-
-# Define the flake file path
-flake_file="./flake.nix"
-config_file="./hosts/unkown/configuration.nix"  # Specify the correct path for your host's configuration file
-monitor_config_file="./home/nomad/unkown.nix"
-current_user=$(logname)
-
 # Prompt for username and hostname
 read -p "Enter the new username: " new_user
 read -p "Enter the new hostname: " new_hostname
+
+# Define the flake file path
+flake_file="./flake.nix"
+config_file="./hosts/$new_hostname/configuration.nix"  # Specify the correct path for your host's configuration file
+monitor_config_file="./home/$new_user/$new_hostname.nix"
+current_user=$(logname)
+
 
 if [ ! -f "./hosts/common/users/nomad.nix" ]; then
   echo -e "$RED Source file nomad.nix does not exist! $ENDCOLOR"
@@ -35,11 +35,35 @@ if [ ! -f "./hosts/common/users/nomad.nix" ]; then
 fi
 
 
-# Copy the file
-# Check if the new file already exists
+
+# Create new host
+if [ -d "./hosts/$new_hostname" ]; then
+  read -p "Directory $new_hostname already exists. Overwrite contents? (y/n) " choice
+  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
+      echo -e "$YELLOW Skipping.. $ENDCOLOR"
+else
+    echo -e "$YELLOW Overwriting Host configuration for $new_hostname... $ENDCOLOR"
+    rm -r "./hosts/$new_hostname"
+    cp -r "./hosts/unkown" "./hosts/$new_hostname"
+    sleep 0.2
+    chown -R $current_user:users "./hosts/$new_hostname"
+    echo -e "$GREEN Host configuration for $new_hostname created successfully! $ENDCOLOR"
+fi
+else
+    echo -e "$YELLOW Creating Host configuration for $new_hostname... $ENDCOLOR"
+    cp -r "./hosts/unkown" "./hosts/$new_hostname"
+    sleep 0.2
+    echo -e "$YELLOW Copying your hardware configurations $ENDCOLOR" 
+    cp "/etc/nixos/hardware-configuration.nix" "./hosts/unkown/hardware-configuration.nix"
+    chown -R $current_user:users "./hosts/$new_hostname"
+    echo -e "$GREEN Host configuration for $new_hostname created successfully! $ENDCOLOR"
+fi
+
+
+# Create user directories
 if [ -f "./hosts/common/users/$new_user.nix" ]; then
   read -p "File $new_user.nix already exists. Overwrite? (y/n) " choice
-  if [ "$choice" != "y" or "$choice" != "yes"]; then
+  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
       echo -e "$YELLOW Skipping.. $ENDCOLOR"
 else
     echo -e "$YELLOW Overwriting User configuration for $new_user... $ENDCOLOR"
@@ -56,7 +80,7 @@ fi
 
 if [ -d "./home/$new_user" ]; then
   read -p "Directory $new_user already exists. Overwrite contents? (y/n) " choice
-  if [ "$choice" != "y" or "$choice" != "yes" ]; then
+  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
       echo -e "$YELLOW Skipping.. $ENDCOLOR"
 else
     echo -e "$YELLOW Overwriting Home configuration for $new_user... $ENDCOLOR"
@@ -149,9 +173,7 @@ sed -i "s/common.services.vfio.enable = .*/common.services.vfio.enable = $vfio_r
 
 # Notify the user that the changes are complete
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
-echo -e "$YELLOW Copying your hardware configurations $ENDCOLOR" 
 
- cp /etc/nixos/hardware-configuration.nix ./hosts/unkown/hardware-configuration.nix
  sleep 2
  sudo nixos-rebuild boot --flake .#unkown
 
