@@ -23,37 +23,67 @@ echo
 flake_file="./flake.nix"
 config_file="./hosts/unkown/configuration.nix"  # Specify the correct path for your host's configuration file
 monitor_config_file="./home/nomad/unkown.nix"
+current_user=$(logname)
 
 # Prompt for username and hostname
 read -p "Enter the new username: " new_user
 read -p "Enter the new hostname: " new_hostname
 
 if [ ! -f "./hosts/common/users/nomad.nix" ]; then
-  echo "Source file nomad.nix does not exist!"
+  echo -e "$RED Source file nomad.nix does not exist! $ENDCOLOR"
   exit 1
 fi
 
+
+# Copy the file
 # Check if the new file already exists
 if [ -f "./hosts/common/users/$new_user.nix" ]; then
   read -p "File $new_user.nix already exists. Overwrite? (y/n) " choice
-  if [ "$choice" != "y" ]; then
-    echo "Aborting."
-    exit 1
-  fi
+  if [ "$choice" != "y" or "$choice" != "yes"]; then
+      echo -e "$YELLOW Skipping.. $ENDCOLOR"
+else
+    echo -e "$YELLOW Overwriting User configuration for $new_user... $ENDCOLOR"
+    cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
+    chown $current_user:users "./hosts/common/users/$new_user.nix"
+    echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
+fi
+else
+    echo -e "$YELLOW Creating User configuration for $new_user... $ENDCOLOR"
+    cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
+    chown $current_user:users "./hosts/common/users/$new_user.nix"
+    echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
 fi
 
-# Copy the file
-echo -e "$YELLOW Creating user configuration for $new_user... $ENDCOLOR"
-cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
+if [ -d "./home/$new_user" ]; then
+  read -p "Directory $new_user already exists. Overwrite contents? (y/n) " choice
+  if [ "$choice" != "y" or "$choice" != "yes" ]; then
+      echo -e "$YELLOW Skipping.. $ENDCOLOR"
+else
+    echo -e "$YELLOW Overwriting Home configuration for $new_user... $ENDCOLOR"
+    if [ ! -d "./home/$new_user" ]; then
+    mkdir "./home/$new_user"
+    fi
+    sleep 0.2
+    cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
+    cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
+    cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
+    chown -R $current_user:users "./home/$new_user"
+    echo -e "$GREEN Home configuration for $new_user created successfully! $ENDCOLOR"
+fi
+else
+    echo -e "$YELLOW Creating Home configuration for $new_user... $ENDCOLOR"
+    if [ ! -d "./home/$new_user" ]; then
+    mkdir "./home/$new_user"
+    fi
+    sleep 0.2
+    cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
+    cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
+    cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
+    chown -R $current_user:users "./home/$new_user"
+    echo -e "$GREEN Home configuration for $new_user created successfully! $ENDCOLOR"
+fi
 
-echo -e "$YELLOW Creating user home configuration for $new_user... $ENDCOLOR"
-mkdir "./home/$new_user"
-sleep 0.2
-cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
-cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
-cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
 
-echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
 
 
 
