@@ -38,7 +38,7 @@
         forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
-        unkown = nixpkgs.lib.nixosSystem {
+        ${hostname} = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs user hostname; };
           modules = [ ./hosts/${hostname} ];
         };

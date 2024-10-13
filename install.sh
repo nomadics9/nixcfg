@@ -175,7 +175,7 @@ sed -i "s/common.services.vfio.enable = .*/common.services.vfio.enable = $vfio_r
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
  sleep 2
- sudo nixos-rebuild boot --flake .#unkown
+ sudo nixos-rebuild boot --flake .#${new_hostname}
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
 
