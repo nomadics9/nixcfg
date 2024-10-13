@@ -35,19 +35,12 @@
 4. ```cd nixcfg```
 5. ```sudo bash install.sh``` and follow the installer.
 * Known issue. sometimes you will get ```/boot/efi``` is not mounted partition error. In that case.
-<br>
-<br>
-    One liner, just change YOUR-HOSTNAME accordingly to your hostname
-<br>
-```sed -i 's|boot.loader.efi.efiSysMountPoint = "/boot/efi";|boot.loader.efi.efiSysMountPoint = "/boot";|' ./hosts/YOUR-HOSTNAME/configuration.nix```
-<br>
-<br>
-or
-<br>
-<br>
-    Manually 
-<br>
-```nano ./hosts/YOUR-HOSTNAME/configuration.nix``` change line 33 from ```boot.loader.efi.efiSysMountPoint = "/boot/efi";``` path to just <b>```/boot```</b>
+    * One liner, just change YOUR-HOSTNAME accordingly to your hostname     
+        ```sed -i 's|boot.loader.efi.efiSysMountPoint = "/boot/efi";|boot.loader.efi.efiSysMountPoint = "/boot";|' ./hosts/YOUR-HOSTNAME/configuration.nix```
+
+    * Manually
+
+        ```nano ./hosts/YOUR-HOSTNAME/configuration.nix``` change line 33 from ```boot.loader.efi.efiSysMountPoint = "/boot/efi";``` path to just ```/boot```
 
 
 ## Configurations - optional
