@@ -47,12 +47,12 @@ sometimes you will get ```/boot/efi``` is not mounted partition error. In that c
 
 
 ## Configurations - optional
-For user packages you will find them in ```home/nomad/home.nix```. You can remove all packages here or keep them nothing is dependent on them.
+For user packages you will find them in ```home/YOUR-USERNAME/home.nix```. You can remove all packages here or keep them nothing is dependent on them.
 <br>
 ![Home](./assets/home.png)
 
 #### Nvidia users
-You might want to check ```hosts/unkown/hardware/nvidia.nix``` and change these values accordingly. 
+You might want to check ```hosts/YOUR-HOSTNAME/hardware/nvidia.nix``` and change these values accordingly. 
 ![Nvidia](./assets/nvidia.png)
 
 #### GPU - Passthrough VM
@@ -65,7 +65,7 @@ Right now the flake is configured to pull dotfiles and scripts from [Here](https
 
 ## Todo
 
-- Add more dotfiles? firefox's for example
+- [ ] Add more dotfiles? firefox's for example
 
 <details>
 <summary><h4>Layout</h4></summary>
