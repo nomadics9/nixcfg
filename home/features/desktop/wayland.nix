@@ -19,7 +19,7 @@ in
           layer = "top";
           modules-left = [ "custom/launcher" "cpu" "memory" "custom/weather" "hyprland/workspaces" ];
           modules-center = [ "mpris" ];
-          modules-right = [ "network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "custom/refresh-rate" ];
+          modules-right = [ "network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "idle_inhibitor" "custom/refresh-rate" ];
 
           "hyprland/workspaces" = {
             format = "{name}";
@@ -173,13 +173,21 @@ in
             tooltip = false;
           };
 
+          "idle_inhibitor" = {
+            format = "{icon}";
+            format-icons = {
+              activated = " ";
+              deactivated = " ";
+            };
+          };
+
           "custom/launcher" = {
             format = "󱄅";
             on-click = "wofi --show drun --allow-images";
           };
 
           "custom/wallpaper" = {
-            format = "󰸉";
+            format = "󰸉 ";
             on-click = "bash ~/.config/hypr/scripts/changewallpaper.sh";
           };
         };
@@ -219,7 +227,6 @@ in
           #mode,
           #custom-lock,
           #workspaces,
-          #idle_inhibitor,
           #custom-launcher,
           #custom-spotify,
           #custom-weather,
@@ -431,46 +438,47 @@ in
             margin-top: 7px;
             margin-bottom: 7px;
           }
-          #language {
-            color: #8a909e;
-            font-family: Iosevka Nerd Font;
-            font-weight: bold;
-            border-radius : 8px 0 0 8px;
-            margin-top: 7px;
-            margin-bottom: 7px;
-          }
-
-          #custom-refresh-rate {
-            color: #8a909e;
-            margin-right: 12px;
-            border-radius: 8px;
-            padding: 0 6px 0 6.8px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 7px;
-            margin-bottom: 7px;
-          }
-          #custom-wallpaper {
-            color: #8a909e;
-            padding-right: 7;
-            padding-left: 7;
-          }
-          #custom-wallpaper,
+        
           #language,
-          #custom-refresh-rate {
+          #custom-refresh-rate,
+          #custom-wallpaper,
+          #idle_inhibitor {
             background-color: #252733;
-            padding: 0em 2em;
+    color: #8a909e;
+    font-family: JetBrains Mono Nerd Font;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 0 7px; /* Adjust padding here */
+    margin-top: 7px;
+    margin-bottom: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
 
-            font-size: 17px;
+#language {
+    border-radius: 8px 0 0 8px; /* Rounded on the left */
+}
 
-            padding-left: 7.5px;
-            padding-right: 7.5px;
+#custom-refresh-rate {
+    border-radius: 0 8px 8px 0; /* Rounded on the right */
+    margin-right: 12px;
+}
 
-            padding-top: 3px;
-            padding-bottom: 3px;
+#custom-wallpaper,
+#idle_inhibitor {
+    /* No border-radius here to avoid separation */
+    padding-left: 7px;
+    padding-right: 7px;
+}
 
-            margin-top: 7px;
-            margin-bottom: 7px;
-          }
+/* Remove additional borders/margins that might cause separation */
+#idle_inhibitor,
+#custom-wallpaper {
+    margin-left: 0; /* Reset margin */
+    margin-right: 0; /* Reset margin */
+    margin-top: 7px; /* Reset margin */
+    margin-bottom: 7px; /* Reset margin */
+}
 
           tooltip {
             font-family: Iosevka Nerd Font;
@@ -505,13 +513,10 @@ in
             background-color: #eb4d4b;
           }
 
-          #idle_inhibitor {
-            background-color: #242933;
-          }
-
           #idle_inhibitor.activated {
             background-color: #ecf0f1;
             color: #2d3436;
+            border-radius: 8px
           }
           #mpris,
           #custom-spotify {
