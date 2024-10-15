@@ -3,11 +3,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1728755658,
-        "narHash": "sha256-wBITZXL6P5tAbz2jsUzEDxPUaMLIx2I/NT0WXAiQJg8=",
+        "lastModified": 1729009831,
+        "narHash": "sha256-fSN4HZWxIH8n6UPoDDwn4CVA/lw7gQzBmLA2CM0Bx70=",
         "ref": "refs/heads/main",
-        "rev": "f2f874c82656d8588c8a611b007f2e35d8eb72f3",
-        "revCount": 29,
+        "rev": "262d5fae27ddb7129a845dc0bb90e93c02407805",
+        "revCount": 30,
         "type": "git",
         "url": "https://github.com/nomadics9/dotfiles.git"
       },

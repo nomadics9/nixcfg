@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, user
 , ...
 }:
 with lib; let
@@ -12,7 +13,7 @@ in
   config = mkIf cfg.enable {
     system.activationScripts.diff = ''
       if [[ -e /run/current-system ]]; then
-        ${pkgs.nix}/bin/nix store diff-closures /run/current-system "$systemConfig"
+      ${pkgs.nix}/bin/nix store diff-closures /run/current-system "$systemConfig"
       fi
     '';
   };
