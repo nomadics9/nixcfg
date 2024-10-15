@@ -15,6 +15,7 @@
   # System
   common.services.polkit.enable = true;
   common.services.xdgportal.enable = true;
+  common.services.update-report.enable = true;
   programs.nix-ld.enable = true; # Non nixos binaries such as mason LSPs
   # Filemanager
   common.services.nautilus.enable = true;

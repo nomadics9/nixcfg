@@ -51,8 +51,8 @@
     ripgrep
     zip
     #zed-fhs
-    android-studio
-    android-tools
+    # android-studio
+    # android-tools
     jre17_minimal
     # Nvim-Lua
     lua-language-server
@@ -112,13 +112,6 @@
     EDITOR = "nvim";
     TERMINAL = "kitty";
     NIXOS_OZONE_WL = "1";
-    #QT_QPA_PLATFORMTHEME = "qt5ct";
-    #QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    #QT_QPA_PLATFORM = "wayland-egl";
-    #QT_STYLE_OVERRIDE = "kvantum"; 
-    #XCURSOR_SIZE = "24";
-    #QT_SCALE_FACTOR = "1.25";
-    #QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -130,14 +123,13 @@
     LIBVA_DRIVER_NAME = "iHD";
     WLR_RENDERER = "vulkan";
     VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-    #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    #__NV_PRIME_RENDER_OFFLOAD="1";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     GTK_USE_PORTAL = "1";
     GTK_THEME = "Nightfox-dark";
-    #NIXOS_XDG_OPEN_USE_PORTAL = "1";
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
     XDG_BIN_HOME = "${config.home.homeDirectory}/.nix-profile/bin";

@@ -7,5 +7,6 @@
     ./appimage.nix
     ./nautilus.nix
     ./xdgportal.nix
+    ./update-report.nix
   ];
 }
