@@ -1,0 +1,10 @@
+keys:
+  - &primary age16yxxp5lqg63zzh3s0f82lpslgc3phy6ugcqdnhh8y7fak65zrqkshjxt25
+  - &ssh_key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *primary
+    - pgp:
+      - *ssh_key

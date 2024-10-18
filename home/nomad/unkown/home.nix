@@ -2,7 +2,7 @@
 # 
 # home-manager init ./
 
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, user, inputs, ... }:
 
 {
   home.username = lib.mkDefault user;
@@ -22,6 +22,7 @@
     # Essentials
     kitty
     firefox
+    google-chrome
     # Apps
     vlc
     amberol
@@ -118,13 +119,13 @@
     MOZ_DRM_DEVICE = "/dev/dri/card0:/dev/dri/card1";
     WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
     #WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line
-    GBM_BACKEND = "nvidia-drm";
+    #GBM_BACKEND = "nvidia-drm";
     CLUTTER_BACKEND = "wayland";
     LIBVA_DRIVER_NAME = "iHD";
     WLR_RENDERER = "vulkan";
     VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    __NV_PRIME_RENDER_OFFLOAD = "1";
+    #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    #__NV_PRIME_RENDER_OFFLOAD = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";

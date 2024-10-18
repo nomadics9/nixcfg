@@ -4,6 +4,8 @@
   imports = [
     ./users
     ./services
+    ./homelab
+    ./vps
     inputs.home-manager.nixosModules.home-manager
   ];
 
