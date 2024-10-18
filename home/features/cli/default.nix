@@ -22,6 +22,5 @@
     zip
     exiftool
     nvtopPackages.full
-    cava
   ];
 }

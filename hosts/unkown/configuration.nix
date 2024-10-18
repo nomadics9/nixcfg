@@ -1,4 +1,4 @@
-{ pkgs, hostname, ... }: {
+{ pkgs, hostname, inputs, user, ... }: {
 
   imports = [
     # Include the results of the hardware scan.
@@ -21,7 +21,7 @@
   common.services.nautilus.enable = true;
   # Virtual Box (Virt-Manager) and GPU Passthru. you have to configure hosts/services/vfio.nix for passthrough to work!
   common.services.vm.enable = true;
-  common.services.vfio.enable = false;
+  #common.services.vfio.enable = false;
   # AppStores
   common.services.appimage.enable = true;
   common.services.steam.enable = true;
@@ -36,6 +36,12 @@
   boot.loader.systemd-boot.configurationLimit = 3;
   # Ntfs support
   boot.supportedFilesystems = [ "ntfs" ];
+
+  sops = {
+    age.keyFile = "/etc/nixos/sops/age/keys.txt";
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
 
 
 

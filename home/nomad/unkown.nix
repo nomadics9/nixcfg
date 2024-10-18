@@ -5,7 +5,7 @@
     ../features/cli
     ../features/desktop
     ../features/themes
-    ./home.nix
+    ./unkown/home.nix
   ];
 
   features = {
