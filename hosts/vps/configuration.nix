@@ -43,7 +43,7 @@
         roll_keep 5
         roll_keep_for 720h
       }
-      format json
+      format caddy
     '';
 
     # Reverse proxy configuration for each domain
@@ -70,11 +70,24 @@
 
       dot.nmd.mov {
         reverse_proxy localhost:19999
-        log
 
         basic_auth /* {
           nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
         }
+      }
+
+
+        nmd.mov {
+          root * /var/www/goaccess
+
+          file_server
+
+          reverse_proxy /ws localhost:7890
+
+        basic_auth /* {
+          nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
+        }
+
       }
     '';
   };
