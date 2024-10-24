@@ -37,6 +37,7 @@
   # Ntfs support
   boot.supportedFilesystems = [ "ntfs" ];
 
+  # Sops secrets Comment this out if you dont need secrets! and configure ur user in hosts/common/users/YOURUSERNAME.nix
   sops = {
     age.keyFile = "/etc/nixos/sops/age/keys.txt";
     defaultSopsFile = ../../secrets/secrets.yaml;

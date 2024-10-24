@@ -26,21 +26,20 @@
       ];
       packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe" #SSH, YOU HAVE TO CHANGE THIS OR REMOVE IT
       ];
     };
 
     root = {
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe" #SSH, YOU HAVE TO CHANGE THIS OR REMOVE IT
+
       ];
       extraGroups = [ "key" ];
     };
   };
 
-  # Decrypt the secrets file using sops-nix with age
-
-
+  #Decrypt the secrets file using sops-nix with age
   sops.secrets = {
     DUFS_USERNAME = { };
     DUFS_PASSWORD = { };
