@@ -15,12 +15,13 @@ let
         service.command = [
           "/data"
           "-a"
-          "???:???@/:rw"
+          ''???:???#fs@/:rw'' # till i figure out how to pass the damn env
           "-A"
           "-a"
           "@/p"
         ];
         service.env_file = [ "${config.sops.templates."my-env.env".path}" ];
+
       };
     };
   };

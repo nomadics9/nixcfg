@@ -23,6 +23,7 @@
     pairdrop.enable = true;
     syncthing.enable = true;
     vpn.enable = true;
+    dashdot.enable = true;
   };
 
   sops = {
@@ -38,89 +39,70 @@
     # Configure log format using mkForce to make sure it takes effect
     logFormat = lib.mkForce ''
       level INFO
-      output file /var/log/caddy/access.log {
-        roll_size 50mb
-        roll_keep 5
-        roll_keep_for 720h
-      }
-      format caddy
     '';
 
     # Reverse proxy configuration for each domain
     extraConfig = ''
-      fs.nmd.mov {
-        reverse_proxy localhost:5000
-        log
-      }
-
-      vpn.nmd.mov {
-        reverse_proxy localhost:51821
-        log
-      }
-
-      s.nmd.mov {
-        reverse_proxy localhost:8384
-        log
-      }
-
-      drop.nmd.mov {
-        reverse_proxy localhost:3000
-        log
-      }
-
-      dot.nmd.mov {
-        reverse_proxy localhost:19999
-
-        basic_auth /* {
-          nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
-        }
-      }
-
-
-        nmd.mov {
-          root * /var/www/goaccess
-
-          file_server
-
-          reverse_proxy /ws localhost:7890
-
-        basic_auth /* {
-          nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
+        (logging) {
+            log {
+              output file /var/log/caddy/{args[0]}.log {
+              roll_size 50mb
+              roll_keep 5
+              roll_keep_for 720h
+              }
+            }
         }
 
-      }
+        fs.nmd.mov {
+          reverse_proxy localhost:5000
+          import logging fs
+        }
+
+        vpn.nmd.mov {
+          reverse_proxy localhost:51821
+          import logging vpn
+        }
+
+        s.nmd.mov {
+          reverse_proxy localhost:8384
+          import logging s
+        }
+
+        drop.nmd.mov {
+          reverse_proxy localhost:3000
+          import logging drop
+        }
+
+        dot.nmd.mov {
+          reverse_proxy localhost:19999
+
+          basic_auth /* {
+            nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
+          }
+        }
+
+        dash.nmd.mov {
+          reverse_proxy localhost:8080
+        }
+
+
+          nmd.mov {
+            root * /var/www/goaccess
+
+            file_server
+
+      reverse_proxy /ws_fs localhost:7890
+      reverse_proxy /ws_drop localhost:7891
+      reverse_proxy /ws_vpn localhost:7892
+      reverse_proxy /ws_sync localhost:7893
+
+          basic_auth /* {
+            nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
+          }
+
+        }
     '';
   };
-  services.netdata = {
-    enable = true;
-    package = pkgs.netdata.override {
-      withCloudUi = true;
-    };
-    extraPluginPaths = [ "/etc/netdata/custom-plugins.d" ];
-    configDir = {
-      # Add the custom plugin script to the Netdata configuration directory
-      "plugins.d/caddy_visitors.sh" = pkgs.writeText "caddy_visitors.sh" ''
-        #!/bin/env/sh
-
-        # Path to the Caddy JSON access log file
-        log_file="/var/log/caddy/access.log"
-
-        # Extract unique visitor IPs from JSON log file
-        unique_visitors=$(jq -r "select(.request.remote_ip != null) | .request.remote_ip" "$log_file" | sort | uniq | wc -l)
-
-        # Define the chart
-        echo CHART caddy_visitors.unique_ips "Unique Visitors from Caddy Logs" "IPs" "Caddy Logs" caddy_visitors line $((netdata_update_every * 10)) 1
-        echo DIMENSION unique_visitors "" absolute 1 1
-
-        # Output the result in a format that Netdata understands
-        echo BEGIN caddy_visitors.unique_ips
-        echo SET unique_visitors = $unique_visitors
-        echo END
-      '';
-    };
-  };
-
-
 
   networking.useDHCP = lib.mkForce false;
   services.cloud-init = {
@@ -185,10 +167,6 @@
     22
     80
     443
-    5000
-    4400
-    3000
-    8384
     22000
     51821
   ];

@@ -41,7 +41,7 @@
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
       user = "nomad";
-      hostname = "vps";
+      hostname = "unkown";
     in
     {
       packages =

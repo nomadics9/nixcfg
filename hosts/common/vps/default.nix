@@ -5,6 +5,7 @@
     ./pairdrop.nix
     ./syncthing.nix
     ./vpn.nix
+    ./dashdot.nix
   ];
 
 }

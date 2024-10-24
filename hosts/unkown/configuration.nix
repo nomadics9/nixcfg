@@ -54,6 +54,11 @@
     autoSuspend = true;
   };
 
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   #Network
   #Define your hostname
   networking.hostName = "${hostname}";
@@ -120,11 +125,6 @@
     git
     zsh
   ];
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
 
   #Firewall
   # Open ports in the firewall.

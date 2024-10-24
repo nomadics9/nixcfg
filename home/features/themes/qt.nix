@@ -10,15 +10,17 @@ in
   options.features.themes.qt.enable = mkEnableOption "qt theme";
 
   config = mkIf cfg.enable {
-
-    qt.enable = true;
-    qt.platformTheme.name = "adwaita";
-    qt.style = {
-      name = "adwaita-dark";
+    qt = {
+      enable = true;
+      platformTheme.name = "adwaita";
+      style = {
+        name = "Adwaita-dark";
+      };
     };
 
-    home.packages = with pkgs; [
-      adwaita-qt6
-    ];
+    home.packages = with pkgs;
+      [
+        adwaita-qt6
+      ];
   };
 }

@@ -58,8 +58,6 @@
     NEXTCLOUD_DB = "${config.sops.placeholder.NEXTCLOUD_DB}"
   '';
 
-  users.users = { };
-
   programs.zsh.enable = true;
   home-manager.users.${user} =
     import ../../../home/${user}/${config.networking.hostName}.nix;

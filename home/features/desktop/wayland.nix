@@ -17,7 +17,7 @@ in
         mainBar = {
           height = 20;
           layer = "top";
-          modules-left = [ "custom/launcher" "cpu" "memory" "custom/weather" "hyprland/workspaces" ];
+          modules-left = [ "custom/launcher" "custom/wg" "cpu" "memory" "custom/weather" "hyprland/workspaces" ];
           modules-center = [ "mpris" ];
           modules-right = [ "network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "idle_inhibitor" "custom/refresh-rate" ];
 
@@ -96,6 +96,13 @@ in
             interval = 1;
             on-click = "~/.config/hypr/scripts/wofi-wifi.sh";
             format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+          };
+
+          "custom/wg" = {
+            exec = "~/.config/hypr/scripts/wg-status.sh";
+            interval = 5;
+            format = "{}";
+            on-click = "~/.config/hypr/scripts/wg-toggle.sh";
           };
 
           "bluetooth" = {
@@ -230,6 +237,7 @@ in
           #custom-launcher,
           #custom-spotify,
           #custom-weather,
+          #custom-wg,
           #custom-weather.severe,
           #custom-weather.sunnyDay,
           #custom-weather.clearNight,

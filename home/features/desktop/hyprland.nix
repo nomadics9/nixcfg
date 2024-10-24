@@ -27,13 +27,14 @@ in
           "syncthing"
           "sleep 3; qsyncthingtray"
           "kdeconnect-indicator"
-          "kdeconnectd"
+          #"kdeconnectd"
           "dbus-update-actvation-environment --systemd --all WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS"
         ];
 
         env = [
           "XCURSOR_SIZE,24"
+          "NIXOS_OZONE_WL,1"
           "GTK_THEME,Nightfox-Dark"
         ];
 
@@ -41,15 +42,17 @@ in
           kb_layout = "us,ara";
           kb_options = "grp:alt_shift_toggle";
           kb_variant = "qwerty_digits";
-          kb_model = "";
-          kb_rules = "";
+          #kb_model = "pc105";
+          #kb_rules = "evdev";
           follow_mouse = 1;
 
           touchpad = {
             natural_scroll = true;
+            disable_while_typing = 1;
+            tap-to-click = 1;
           };
 
-          sensitivity = 0;
+          sensitivity = 0.1;
         };
 
         general = {
@@ -103,6 +106,10 @@ in
           workspace_swipe_min_speed_to_force = 5;
         };
 
+        misc = {
+          vfr = true;
+        };
+
         windowrule = [
           "float, file_progress"
           "float, confirm"
@@ -112,7 +119,7 @@ in
           "float, error"
           "float, splash"
           "float, confirmreset"
-          "float, title:Open File"
+          "float, title:Open File" # decrease screen brightness
           "float, title:branchdialog"
           "float, Lxappearance"
           "float, Wofi"
@@ -234,14 +241,11 @@ in
           "$mainMod, right, resizeactive, 40 0"
           "$mainMod, up, resizeactive, 0 -40"
           "$mainMod, down, resizeactive, 0 40"
-          #"XF86AudioMute , exec, $HOME/.config/hypr/scripts/volume mute"
-          # "XF86AudioLowerVolume, exec, \"$HOME/.config/hypr/scripts/volume down\""
-          # "XF86AudioRaiseVolume, exec, sh -c \"$HOME/.config/hypr/scripts/volume up\""
-          # "XF86AudioMicMute, exec, \"pactl set-source-mute @DEFAULT_SOURCE@ toggle\""
-          #
-          # "XF86MonBrightnessUp, exec, \"$HOME/hypr/scripts/brightness up\"" # increase screen brightness
-          # "XF86MonBrightnessDown, exec, \"$HOME/.config/hypr/scripts/brightness down\"" # decrease screen brightness
-
+          ", XF86AudioMute, exec, $HOME/.config/hypr/scripts/volume mute"
+          ", XF86AudioLowerVolume, exec, $HOME/.config/hypr/scripts/volume down"
+          ", XF86AudioRaiseVolume, exec, $HOME/.config/hypr/scripts/volume up"
+          ", XF86MonBrightnessUp, exec, $HOME/.config/hypr/scripts/brightness up"
+          ", XF86MonBrightnessDown, exec, $HOME/.config/hypr/scripts/brightness down"
         ];
 
 
