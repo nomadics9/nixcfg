@@ -30,23 +30,6 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      # device = [
-      #   {
-      #     name = "33a6c9b0";
-      #     kb_layout = "us,ara";
-      #     kb_variant = "qwerty_digits";
-      #     kb_options = "grp:alt_shift_toggle";
-      #   }
-      #   {
-      #     name = "338ebb50"; # xiaomi-wmi-keys
-      #     kb_layout = "us";
-      #     kb_options = ""; # Custom options if needed
-      #   }
-      #   {
-      #     name = "38db2b20";
-      #     sensitivity = 0.5;
-      #   }
-      # ];
       monitor = [
         "eDP-1,2560x1600@60,0x0,1.25"
         "DP-2,1920x1080@60,auto,1"

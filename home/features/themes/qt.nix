@@ -14,7 +14,7 @@ in
       enable = true;
       platformTheme.name = "adwaita";
       style = {
-        name = "Adwaita-dark";
+        name = "adwaita-dark";
       };
     };
 
