@@ -597,10 +597,11 @@ in
       brightnessctl
       pamixer
       pavucontrol # Volume control
-      dunst # Notifications
       jellyfin-ffmpeg # Multimedia libs
       viewnior # Image viewr
+      mako # Notifications
       libcanberra-gtk3 # Notification sound
+      libnotify # notify-send
 
       # Gnome Stuff
       gtk-engine-murrine

@@ -21,5 +21,5 @@ formatted_output=$(echo "$output" | awk '
         printf "🔹 %s: %s +%s\n", package, version, size_mib_rounded
     }
 }')
-dunstify -u low -h string:x-dunst-stack-tag:diff -a "💫 Updated Packages" "$formatted_output"
+notify-send -u low -h string:x-mako-stack-tag:diff "💫 Updated Packages" "$formatted_output" -t 0 -u critical
 
