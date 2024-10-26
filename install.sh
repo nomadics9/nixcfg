@@ -197,7 +197,7 @@ fi
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
  sleep 2
- sudo nixos-rebuild boot --flake .#${new_hostname}
+ sudo nixos-rebuild boot --flake .#unkown
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
 
