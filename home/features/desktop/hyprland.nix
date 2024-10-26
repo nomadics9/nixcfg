@@ -58,8 +58,10 @@ in
         general = {
           gaps_in = 5;
           gaps_out = 5;
-          border_size = 1;
-          "col.active_border" = "rgba(02BEF5ee) rgba(02BEF5ee) 45deg";
+          border_size = 2;
+          #"col.active_border" = "rgba(02BEF5ee) rgba(02BEF5ee) 45deg";
+          # "col.active_border" = "rgba(0dcaf5ee) rgba(0dcaf5ee) 45deg";
+          "col.active_border" = "rgba(5faaffee) rgba(5faaffee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
           layout = "dwindle";
         };
