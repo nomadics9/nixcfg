@@ -251,7 +251,7 @@ in
             color: #e5e5e5;
             border-radius: 6px;
             padding: 2px 10px;
-            background-color: #252733;
+            background-color: #222034;
             border-radius: 8px;
             font-size: 14px;
 
@@ -324,7 +324,7 @@ in
           #battery,
           #pulseaudio,
           #network {
-            background-color: #252733;
+            background-color: #222034;
             padding: 0em 2em;
 
             font-size: 14px;
@@ -451,7 +451,7 @@ in
           #custom-refresh-rate,
           #custom-wallpaper,
           #idle_inhibitor {
-            background-color: #252733;
+            background-color: #222034;
     color: #8a909e;
     font-family: JetBrains Mono Nerd Font;
     font-weight: bold;
