@@ -24,6 +24,7 @@
     syncthing.enable = true;
     vpn.enable = true;
     dashdot.enable = true;
+    audiobookshelf.enable = true;
   };
 
   sops = {
@@ -95,6 +96,7 @@
       reverse_proxy /ws_drop localhost:7891
       reverse_proxy /ws_vpn localhost:7892
       reverse_proxy /ws_sync localhost:7893
+      reverse_proxy /books localhost:13378
 
           basic_auth /* {
             nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi

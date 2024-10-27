@@ -6,6 +6,7 @@
     ./syncthing.nix
     ./vpn.nix
     ./dashdot.nix
+    ./audiobookshelf.nix
   ];
 
 }
