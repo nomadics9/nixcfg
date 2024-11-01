@@ -68,6 +68,8 @@ setup_host_configuration() {
 
     cp -r "./hosts/unkown" "./hosts/$new_hostname"
     chown -R $current_user:users "./hosts/$new_hostname"
+    rm "./hosts/$new_hostname/hardware-configuration.nix"
+    cp "/etc/nixos/hardware-configuration.nix" "./hosts/${new_hostname}/"
     echo -e "$GREEN Host configuration for $new_hostname created successfully! $ENDCOLOR"
 }
 
