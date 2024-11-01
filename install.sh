@@ -181,7 +181,6 @@ echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
  sleep 2
  git add .
- chown 
  nixos-rebuild switch --flake .#unkown
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
