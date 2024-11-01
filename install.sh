@@ -4,6 +4,7 @@ GREEN="\e[32m"
 YELLOW="\e[33m"
 BLUE="\e[34m"
 ENDCOLOR="\e[0m"
+
 echo -e " $YELLOW
  _   _  ___  __  __    _    ____    _   _ _____  _____  ____    ___ _   _ ____ _____  _    _     _     _____ ____  
 | \ | |/ _ \|  \/  |  / \  |  _ \  | \ | |_ _\ \/ / _ \/ ___|  |_ _| \ | / ___|_   _|/ \  | |   | |   | ____|  _ \ 
@@ -16,100 +17,82 @@ $ENDCOLOR
            $RED TO MAKE SURE EVERYTHING RUNS CORRECTLY $ENDCOLOR $GREEN RUN AS ROOT '"sudo bash install.sh"' $ENDCOLOR 
 "
 echo 
-echo
 
 # Prompt for username and hostname
 read -p "Enter the new username: " new_user
 read -p "Enter the new hostname: " new_hostname
 
-# Define the flake file path
+# Define the flake file path and current user
 flake_file="./flake.nix"
-config_file="./hosts/$new_hostname/configuration.nix"  # Specify the correct path for your host's configuration file
+config_file="./hosts/$new_hostname/configuration.nix"
 monitor_config_file="./home/$new_user/$new_hostname.nix"
 current_user=$(logname)
 
-
+# Check if source files exist
 if [[ ! -f "./hosts/common/users/nomad.nix" && ! -d "./hosts/unkown/" ]]; then
   echo -e "$RED Source files nomad.nix or ./hosts/unkown directory does not exist! $ENDCOLOR"
   exit 1
 fi
 
+# Function to copy and configure the home.nix file for the user and hostname
+setup_home_configuration() {
+    local user_dir="./home/$new_user/$new_hostname"
 
+    if [ ! -d "$user_dir" ]; then
+        mkdir -p "$user_dir"
+    fi
 
-# Create new host
-if [ -d "./hosts/$new_hostname" ]; then
-  read -p "Directory $new_hostname already exists. Overwrite contents? (y/n) " choice
-  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
-      echo -e "$YELLOW Skipping.. $ENDCOLOR"
-else
-    echo -e "$YELLOW Overwriting Host configuration for $new_hostname... $ENDCOLOR"
-    rm -r "./hosts/$new_hostname"
+    # Copy the home.nix file and update the hostname path inside
+    cp "./home/nomad/unkown/home.nix" "$user_dir/home.nix"
+    cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
+    cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
+    sed -i "s|unkown|$new_hostname|g" "./home/$new_user/$new_hostname.nix"
+
+    chown -R $current_user:users "./home/$new_user"
+    echo -e "$GREEN Home configuration for $new_user created and updated with hostname $new_hostname! $ENDCOLOR"
+}
+
+# Function to create or overwrite host configuration
+setup_host_configuration() {
+    if [ -d "./hosts/$new_hostname" ]; then
+        read -p "Directory $new_hostname already exists. Overwrite contents? (y/n) " choice
+        if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
+            echo -e "$YELLOW Skipping host configuration for $new_hostname... $ENDCOLOR"
+            return
+        fi
+        echo -e "$YELLOW Overwriting Host configuration for $new_hostname... $ENDCOLOR"
+        rm -r "./hosts/$new_hostname"
+    else
+        echo -e "$YELLOW Creating Host configuration for $new_hostname... $ENDCOLOR"
+    fi
+
     cp -r "./hosts/unkown" "./hosts/$new_hostname"
-    sleep 0.2
     chown -R $current_user:users "./hosts/$new_hostname"
     echo -e "$GREEN Host configuration for $new_hostname created successfully! $ENDCOLOR"
-fi
-else
-    echo -e "$YELLOW Creating Host configuration for $new_hostname... $ENDCOLOR"
-    cp -r "./hosts/unkown" "./hosts/$new_hostname"
-    sleep 0.2
-    echo -e "$YELLOW Copying your hardware configurations $ENDCOLOR" 
-    cp "/etc/nixos/hardware-configuration.nix" "./hosts/unkown/hardware-configuration.nix"
-    chown -R $current_user:users "./hosts/$new_hostname"
-    echo -e "$GREEN Host configuration for $new_hostname created successfully! $ENDCOLOR"
-fi
+}
 
+# Function to create or overwrite user configuration
+setup_user_configuration() {
+    if [ -f "./hosts/common/users/$new_user.nix" ]; then
+        read -p "File $new_user.nix already exists. Overwrite? (y/n) " choice
+        if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
+            echo -e "$YELLOW Skipping user configuration for $new_user... $ENDCOLOR"
+            return
+        fi
+        echo -e "$YELLOW Overwriting User configuration for $new_user... $ENDCOLOR"
+    else
+        echo -e "$YELLOW Creating User configuration for $new_user... $ENDCOLOR"
+    fi
 
-# Create user directories
-if [ -f "./hosts/common/users/$new_user.nix" ]; then
-  read -p "File $new_user.nix already exists. Overwrite? (y/n) " choice
-  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
-      echo -e "$YELLOW Skipping.. $ENDCOLOR"
-else
-    echo -e "$YELLOW Overwriting User configuration for $new_user... $ENDCOLOR"
     cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
     chown $current_user:users "./hosts/common/users/$new_user.nix"
     echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
-fi
-else
-    echo -e "$YELLOW Creating User configuration for $new_user... $ENDCOLOR"
-    cp "./hosts/common/users/nomad.nix" "./hosts/common/users/$new_user.nix"
-    chown $current_user:users "./hosts/common/users/$new_user.nix"
-    echo -e "$GREEN User configuration for $new_user created successfully! $ENDCOLOR"
-fi
+}
 
-if [ -d "./home/$new_user" ]; then
-  read -p "Directory $new_user already exists. Overwrite contents? (y/n) " choice
-  if [[ "$choice" != "y" && "$choice" != "yes" ]]; then
-      echo -e "$YELLOW Skipping.. $ENDCOLOR"
-else
-    echo -e "$YELLOW Overwriting Home configuration for $new_user... $ENDCOLOR"
-    if [ ! -d "./home/$new_user" ]; then
-    mkdir "./home/$new_user"
-    fi
-    sleep 0.2
-    cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
-    cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
-    cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
-    chown -R $current_user:users "./home/$new_user"
-    echo -e "$GREEN Home configuration for $new_user created successfully! $ENDCOLOR"
-fi
-else
-    echo -e "$YELLOW Creating Home configuration for $new_user... $ENDCOLOR"
-    if [ ! -d "./home/$new_user" ]; then
-    mkdir "./home/$new_user"
-    fi
-    sleep 0.2
-    cp "./home/nomad/home.nix" "./home/$new_user/home.nix"
-    cp "./home/nomad/unkown.nix" "./home/$new_user/$new_hostname.nix"
-    cp -r "./home/nomad/dotfiles/" "./home/$new_user/"
-    chown -R $current_user:users "./home/$new_user"
-    echo -e "$GREEN Home configuration for $new_user created successfully! $ENDCOLOR"
-fi
-
-
-
-
+# Call the functions to create configurations
+setup_host_configuration
+setup_user_configuration
+setup_home_configuration
 
 # Replace the 'user' and 'hostname' values in the flake.nix file
 sed -i "s/user = \".*\";/user = \"$new_user\";/" "$flake_file"
@@ -197,7 +180,9 @@ fi
 echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
  sleep 2
- sudo nixos-rebuild boot --flake .#unkown
+ git add .
+ chown 
+ nixos-rebuild switch --flake .#unkown
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
 
