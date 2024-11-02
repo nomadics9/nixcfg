@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
 
-    home.file.".config/user-dirs.dirs".text = ''
+    home.file.".config/user-dirs.dirs".text = /*bash*/ ''
       XDG_DESKTOP_DIR="$HOME/Desktop"
       XDG_DOWNLOAD_DIR="$HOME/Downloads"
       XDG_PUBLICSHARE_DIR="$HOME/Public"

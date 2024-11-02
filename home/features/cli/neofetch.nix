@@ -5,7 +5,7 @@
 }:
 with lib; let
   cfg = config.features.cli.neofetch;
-  neofetchConfig = ''
+  neofetchConfig = /*bash*/ ''
     print_info() {
         info "\033[1;32m ╭─󱄅 " distro   # cl2 (green)
         info "\033[1;32m ├─" kernel     # cl2 (green)

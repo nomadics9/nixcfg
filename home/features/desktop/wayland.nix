@@ -186,7 +186,7 @@ in
       };
 
 
-      style = '' 
+      style = /*css*/ '' 
   
         * {
           font-family: JetBrains Mono, JetBrainsMono Nerd Font, Material Design Icons;
