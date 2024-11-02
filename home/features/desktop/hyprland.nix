@@ -59,8 +59,6 @@ in
           gaps_in = 5;
           gaps_out = 5;
           border_size = 2;
-          #"col.active_border" = "rgba(02BEF5ee) rgba(02BEF5ee) 45deg";
-          # "col.active_border" = "rgba(0dcaf5ee) rgba(0dcaf5ee) 45deg";
           "col.active_border" = "rgba(5faaffee) rgba(5faaffee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
           layout = "dwindle";
@@ -127,7 +125,7 @@ in
           "float, Wofi"
           "float, Calculator"
           "rounding 10, Wofi"
-          "float, dunst"
+          "float, mako"
           "animation none,Wofi"
           "float,viewnior"
           "float,feh"
@@ -137,7 +135,7 @@ in
           "fullscreen, wlogout"
           "float, title:wlogout"
           "fullscreen, title:wlogout"
-          "idleinhibit focus, mpv"
+          "idleinhibit focus, vlc"
           "idleinhibit fullscreen, firefox"
           "float, title:^(Media viewer)$"
           "float, title:^(Volume Control)$"

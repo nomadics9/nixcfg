@@ -1,5 +1,5 @@
 {
-  home.file.".config/bat/config".text = ''
+  home.file.".config/bat/config".text = /*bash*/ ''
     --theme="Dracula"
 
     # Show line numbers, Git modifications and file header (but no grid)

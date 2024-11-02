@@ -118,7 +118,7 @@ in
   options.features.cli.neofetch.enable = mkEnableOption "enable neofetch";
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ neofetch ];
+    home.packages = with pkgs; [ neofetch imagemagick ];
     home.file.".config/neofetch/config.conf".text = lib.mkForce neofetchConfig;
   };
 }

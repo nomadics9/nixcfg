@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }: {
   imports = [
     ./bat.nix
+    ./kitty.nix
   ];
 
   home.file.".config/nvim" = {

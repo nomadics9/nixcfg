@@ -14,6 +14,10 @@
     kitty
     firefox
     google-chrome
+    age
+    sops
+    networkmanagerapplet
+    nvd
     # Apps
     vlc
     amberol
@@ -32,7 +36,12 @@
     exiftool
     moonlight-qt
     kdePackages.kdeconnect-kde
+    cmatrix
+    jellyfin-media-player
+    speedtest-go
+    wireguard-tools
     # Dev
+    devbox
     go
     python3
     nim
@@ -42,13 +51,16 @@
     bruno
     ripgrep
     zip
+    nodejs
+    gcc
+    python312Packages.pip
     #zed-fhs
     # android-studio
     # android-tools
     jre17_minimal
-    # Nvim-Lua
+    # Nvim
     lua-language-server
-    cowsay
+    glow
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly
