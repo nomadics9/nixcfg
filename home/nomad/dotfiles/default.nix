@@ -2,12 +2,9 @@
   imports = [
     ./bat.nix
     ./kitty.nix
+    ./rofi.nix
+    ./nvim.nix
   ];
-
-  home.file.".config/nvim" = {
-    source = "${inputs.dotfiles}/nvim";
-    recursive = true;
-  };
 
   home.file.".config/mako" = {
     source = "${inputs.dotfiles}/mako";
