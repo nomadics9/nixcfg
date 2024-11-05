@@ -89,7 +89,7 @@ in
             format-disconnected = "󰤭";
             tooltip-format = "{essid}";
             interval = 1;
-            on-click = "~/.config/hypr/scripts/wofi-wifi.sh";
+            on-click = "~/.config/hypr/scripts/rofi-wifi.sh";
             format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
           };
 
@@ -175,7 +175,7 @@ in
 
           "custom/launcher" = {
             format = "󱄅";
-            on-click = "wofi --show drun --allow-images";
+            on-click = "rofi -show drun";
           };
 
           "custom/wallpaper" = {
