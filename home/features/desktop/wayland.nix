@@ -310,18 +310,17 @@ in
           }
 
   '';
-
     };
 
     home.packages = with pkgs; [
-      wofi
-      wofi-emoji
       dbus
       sway-contrib.grimshot
       hyprlock
       hypridle
       hyprpaper
       hyprpicker
+      rofi-wayland
+      rofimoji
       qt6.qtwayland
       kdePackages.qt6ct
       slurp

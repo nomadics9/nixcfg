@@ -10,6 +10,7 @@
       # example = prev.example.overrideAttrs (oldAttrs: rec {
       # ...
       # });
+      rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
     };
 
   stable-packages = final: _prev: {

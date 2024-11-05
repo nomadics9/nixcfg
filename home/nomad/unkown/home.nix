@@ -61,6 +61,7 @@
     # Nvim
     lua-language-server
     glow
+    #hk
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly

@@ -27,6 +27,8 @@
   common.services.steam.enable = true;
   services.flatpak.enable = true;
 
+  programs.wireshark.enable = true;
+
 
   #Bootloader
   boot.loader.systemd-boot.enable = true;

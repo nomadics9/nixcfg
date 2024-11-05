@@ -23,6 +23,7 @@
         "qemu-libvirtd"
         "docker"
         "key"
+        "wireshark"
       ];
       packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
       openssh.authorizedKeys.keys = [

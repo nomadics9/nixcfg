@@ -121,12 +121,9 @@ in
           "float, confirmreset"
           "float, title:Open File" # decrease screen brightness
           "float, title:branchdialog"
-          "float, Lxappearance"
-          "float, Wofi"
+          "float, Rofi"
           "float, Calculator"
-          "rounding 10, Wofi"
           "float, mako"
-          "animation none,Wofi"
           "float,viewnior"
           "float,feh"
           "float, pavucontrol-qt"
@@ -151,8 +148,6 @@ in
 
         bind = [
           "$mainMod, Escape, exec, wlogout -p layer-shell"
-          "$mainMod, R, exec, wofi --show drun --allow-images"
-          "$mainMod, P, exec, wofi-pass"
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
 
@@ -182,7 +177,7 @@ in
           "$mainMod, C, killactive"
           "$mainMod SHIFT, Q, exit"
           "$mainMod, E, exec, nautilus"
-          #"$mainMod, R, exec, rofi -show drun -show-icons"
+          "$mainMod, R, exec, ~/.config/rofi/launchers/type-6/launcher.sh"
           #"$mainMod, P, pseudo"
 
 
@@ -197,7 +192,7 @@ in
           "$mainMod SHIFT, R, exec, wf-recorder & dunstify -a 'Recordering Started' -i -u -A '^C ,stop' -t 0 -i ~/icons/rec-button.png"
 
           # Emoji selector
-          "$mainMod SHIFT, E, exec, wofi-emoji"
+          "$mainMod SHIFT, E, exec, rofimoji"
 
 
           # Change HZ
