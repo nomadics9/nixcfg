@@ -189,7 +189,7 @@ in
           "$mainMod SHIFT, S, exec, grimshot savecopy area - | swappy -f - -o ~/Photos/screenshot-$(date +'%d-%m-%Y_%H:%M').png"
 
           # Screen recorder
-          "$mainMod SHIFT, R, exec, wf-recorder & dunstify -a 'Recordering Started' -i -u -A '^C ,stop' -t 0 -i ~/icons/rec-button.png"
+          "$mainMod SHIFT, R, exec, wf-recorder -a -f ~/Video/recording.mkv & notify-send 'Recordering Started' -i -u -A '^C ,stop' -t 0 -i ~/icons/rec-button.png"
 
           # Emoji selector
           "$mainMod SHIFT, E, exec, rofimoji"

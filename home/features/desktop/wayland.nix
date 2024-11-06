@@ -43,7 +43,9 @@ in
           };
 
           "hyprland/language" = {
-            format = "{short}";
+            format = "{}";
+            format-ar = "🇰🇼 ";
+            format-en = "🇬🇧 ";
           };
 
           "tray" = {
