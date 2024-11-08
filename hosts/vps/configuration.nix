@@ -47,51 +47,56 @@
 
     # Reverse proxy configuration for each domain
     extraConfig = ''
-        (logging) {
-            log {
-              output file /var/log/caddy/{args[0]}.log {
-              roll_size 50mb
-              roll_keep 5
-              roll_keep_for 720h
-              }
+      (logging) {
+          log {
+            output file /var/log/caddy/{args[0]}.log {
+            roll_size 50mb
+            roll_keep 5
+            roll_keep_for 720h
             }
-        }
-
-        fs.nmd.mov {
-          reverse_proxy localhost:5000
-          import logging fs
-        }
-
-        vpn.nmd.mov {
-          reverse_proxy localhost:51821
-          import logging vpn
-        }
-
-        s.nmd.mov {
-          reverse_proxy localhost:8384
-          import logging s
-        }
-
-        drop.nmd.mov {
-          reverse_proxy localhost:3000
-          import logging drop
-        }
-
-        dot.nmd.mov {
-          reverse_proxy localhost:19999
-
-          basic_auth /* {
-            nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
           }
+      }
+
+      fs.nmd.mov {
+        reverse_proxy localhost:5000
+        import logging fs
+      }
+
+      vpn.nmd.mov {
+        reverse_proxy localhost:51821
+        import logging vpn
+      }
+
+      s.nmd.mov {
+        reverse_proxy localhost:8384
+        import logging s
+      }
+
+      drop.nmd.mov {
+        reverse_proxy localhost:3000
+        import logging drop
+      }
+
+      dot.nmd.mov {
+        reverse_proxy localhost:19999
+
+        basic_auth /* {
+          nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
         }
+      }
 
-        dash.nmd.mov {
-          reverse_proxy localhost:8080
-        }
+      dash.nmd.mov {
+        reverse_proxy localhost:8080
+      }
 
 
-          nmd.mov {
-            root * /var/www/goaccess
+        nmd.mov {
+        reverse_proxy localhost:3001
+      }
+
+
+        www.nmd.mov {
+          root * /var/www/goaccess
 
             file_server
 
@@ -99,7 +104,7 @@
       reverse_proxy /ws_drop localhost:7891
       reverse_proxy /ws_vpn localhost:7892
       reverse_proxy /ws_sync localhost:7893
-
+ 
           basic_auth /* {
             nomad $2a$12$toBh5sfXyxigtHGNY4t8tO7YYQp6i3aZk/O0qd19lgk0LRz5eqDVi
           }

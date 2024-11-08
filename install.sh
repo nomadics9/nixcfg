@@ -183,7 +183,8 @@ echo -e "$GREEN Configuration has been updated with your preferences $ENDCOLOR"
 
  sleep 2
  git add .
- nixos-rebuild boot --flake .#unkown
+ nixos-rebuild switch --flake .#unkown
+ home-manager switch -b --flake .#${new_user}@${new_hostname}
 
  echo -e "$GREEN Reboot after completion your initial password is 4321 $ENDCOLOR"
 
