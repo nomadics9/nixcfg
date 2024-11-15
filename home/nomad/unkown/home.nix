@@ -32,12 +32,12 @@
     syncthing
     qsyncthingtray
     htop
-    nvtopPackages.full
+    #nvtopPackages.full
     exiftool
     moonlight-qt
     kdePackages.kdeconnect-kde
     cmatrix
-    jellyfin-media-player
+    #jellyfin-media-player
     speedtest-go
     wireguard-tools
     # Dev
@@ -54,14 +54,13 @@
     nodejs
     gcc
     python312Packages.pip
-    #zed-fhs
-    # android-studio
-    # android-tools
+    android-studio
+    android-tools
     jre17_minimal
-    # Nvim
+    # Nvim-Lsps
     lua-language-server
+    tailwindcss-language-server
     glow
-    #hk
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly

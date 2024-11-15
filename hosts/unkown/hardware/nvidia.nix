@@ -45,7 +45,7 @@ in
       #nvidia.nvidiaPersistenced = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+      nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
       #offload , Sync or reverseSync
       nvidia.prime = {
