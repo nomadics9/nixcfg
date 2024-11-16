@@ -42,8 +42,6 @@ in
           kb_layout = "us,ara";
           kb_options = "grp:alt_shift_toggle";
           kb_variant = "qwerty_digits";
-          #kb_model = "pc105";
-          #kb_rules = "evdev";
           follow_mouse = 1;
 
           touchpad = {
@@ -65,13 +63,15 @@ in
         };
 
         decoration = {
-          "col.shadow" = "rgba(1E202966)";
-          drop_shadow = true;
-          shadow_range = 60;
-          shadow_offset = "1 2";
-          shadow_render_power = 3;
-          shadow_scale = 0.97;
           rounding = 8;
+          shadow = {
+            enabled = true;
+            color = "rgba(1E202966)";
+            range = 60;
+            offset = "1 2";
+            render_power = 3;
+            scale = 0.97;
+          };
           blur = {
             enabled = true;
             size = 3;
