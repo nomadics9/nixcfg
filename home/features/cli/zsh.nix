@@ -23,17 +23,18 @@ in
       # '';
 
       shellAliases = {
-        switchhypr = "sudo nixos-rebuild switch --flake .";
+        rebuild = "sudo nixos-rebuild switch";
         dotfilesu = "nix flake lock --update-input dotfiles";
-        switchuhypr = "nix flake lock --update-input dotfiles && sudo nixos-rebuild switch --flake .";
-        clean = "sudo nix-collect-garbage -d";
         cleanold = "sudo nix-collect-garbage --delete-old";
         cleanboot = "sudo /run/current-system/bin/switch-to-configuration boot";
-        nvim = "kitty @ set-spacing padding=0 && /run/current-system/sw/bin/nvim";
+        # nvim = "kitty @ set-spacing padding=0 && /run/current-system/sw/bin/nvim";
+        # nvim = "alacritty --config-file ~/.config/alacritty/alacritty_nvim.toml -e nvim";
+
       };
-      initExtraFirst = "
-    unsetopt beep
-    ";
+      initExtraFirst = ''
+        unsetopt beep
+        path+=('/home/nomad/.local/bin')
+      '';
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       #  zplug = {

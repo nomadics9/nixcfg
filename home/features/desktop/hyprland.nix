@@ -36,6 +36,8 @@ in
           "XCURSOR_SIZE,24"
           "NIXOS_OZONE_WL,1"
           "GTK_THEME,Nightfox-Dark"
+          "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+          "ELECTRON_EXTRA_FLAGS,--force-device-scale-factor=1.5"
         ];
 
         input = {
@@ -172,7 +174,7 @@ in
 
           "$mainMod SHIFT, t, exec, kitty --start-as=fullscreen -o 'font_size=18' --title all_is_kitty"
           "ALT, RETURN, exec, kitty --title fly_is_kitty"
-          "$mainMod, RETURN, exec, kitty --title kitty_term"
+          "$mainMod, RETURN, exec, alacritty"
 
           "$mainMod, C, killactive"
           "$mainMod SHIFT, Q, exit"

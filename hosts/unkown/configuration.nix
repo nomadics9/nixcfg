@@ -27,7 +27,14 @@
   common.services.steam.enable = true;
   services.flatpak.enable = true;
 
-  programs.wireshark.enable = true;
+  # Sops secrets Comment this out if you dont need secrets! and configure ur user in hosts/common/users/YOURUSERNAME.nix
+  sops = {
+    age.keyFile = "/etc/nixos/sops/age/keys.txt";
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
+
+  #services.samba.enable = true;
 
 
   #Bootloader
@@ -38,14 +45,6 @@
   boot.loader.systemd-boot.configurationLimit = 3;
   # Ntfs support
   boot.supportedFilesystems = [ "ntfs" ];
-
-  # Sops secrets Comment this out if you dont need secrets! and configure ur user in hosts/common/users/YOURUSERNAME.nix
-  sops = {
-    age.keyFile = "/etc/nixos/sops/age/keys.txt";
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-  };
-
 
 
   # Enable GDM Login Manager
@@ -68,6 +67,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  #Hosts 
+  networking.extraHosts = ''
+  '';
+
   # Bluethooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -87,7 +90,10 @@
 
 
   # Set your time zone.
-  time.timeZone = "Asia/Kuwait";
+  #time.timeZone = "Asia/Kuwait";
+  services.ntp = {
+    enable = true;
+  };
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -136,6 +142,7 @@
   # networking.firewall.allowedUDPPortRanges = [ { from = 32768; to = 60999; } ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  networking.nftables.enable = false;
 
 
   # Before changing this value read the documentation for this option

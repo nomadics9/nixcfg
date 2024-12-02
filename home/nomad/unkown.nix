@@ -32,7 +32,7 @@
     settings = {
       monitor = [
         "eDP-1,2560x1600@60,0x0,1.25"
-        "DP-2,1920x1080@60,auto,1"
+        "DP-2,1920x1080@60,auto,1,mirror,eDP-1"
 
       ];
       workspace = [

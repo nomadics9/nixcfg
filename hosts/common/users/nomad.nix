@@ -49,7 +49,6 @@
     NEXTCLOUD_DB = { };
   };
 
-
   sops.templates."my-env.env".content = ''
     DUFS_USERNAME = "${config.sops.placeholder.DUFS_USERNAME}"
     DUFS_PASSWORD = "${config.sops.placeholder.DUFS_PASSWORD}"
@@ -57,6 +56,11 @@
     NEXTCLOUD_DB_PASSWORD = "${config.sops.placeholder.NEXTCLOUD_DB_PASSWORD}"
     NEXTCLOUD_DB = "${config.sops.placeholder.NEXTCLOUD_DB}"
   '';
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
 
   programs.zsh.enable = true;
   home-manager.users.${user} =

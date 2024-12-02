@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     # Essentials
     kitty
+    alacritty
     firefox
     google-chrome
     age
@@ -23,7 +24,7 @@
     amberol
     webcord
     bottles
-    cava
+    #cava
     ryujinx
     mullvad-vpn
     transmission_4-gtk
@@ -32,6 +33,7 @@
     syncthing
     qsyncthingtray
     htop
+    openvpn
     #nvtopPackages.full
     exiftool
     moonlight-qt
@@ -61,6 +63,8 @@
     lua-language-server
     tailwindcss-language-server
     glow
+    # Hacks
+    responder-patched
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -105,6 +109,8 @@
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    ELECTRON_EXTRA_FLAGS = "--force-device-scale-factor=1.5";
     #_JAVA_AWT_WM_NONREPARENTING = "1";
     #MOZ_DRM_DEVICE = "/dev/dri/card0:/dev/dri/card1";
     #WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
