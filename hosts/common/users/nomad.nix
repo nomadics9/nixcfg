@@ -26,6 +26,7 @@
         "wireshark"
       ];
       packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
+
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICqA7j8hk3+k0b04eDxuoUakldqKrP0aatLm+CREjFJe" #SSH, YOU HAVE TO CHANGE THIS OR REMOVE IT
       ];

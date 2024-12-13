@@ -10,14 +10,16 @@
       # example = prev.example.overrideAttrs (oldAttrs: rec {
       # ...
       # });
+
       rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
 
-      electron = prev.electron.overrideAttrs (oldAttrs: {
-        postInstall = ''
-          wrapProgram $out/bin/electron \
-            --add-flags "--force-device-scale-factor=1.5"
-        '';
-      });
+      # electron = prev.electron.overrideAttrs (oldAttrs: {
+      #   postInstall = ''
+      #     wrapProgram $out/bin/electron \
+      #       --add-flags "--force-device-scale-factor=1.5"
+      #   '';
+      # });
+
       responder-patched = prev.responder.overrideAttrs (oldAttrs: rec {
         buildInputs = oldAttrs.buildInputs or [ ] ++ [ prev.openssl prev.coreutils ];
 

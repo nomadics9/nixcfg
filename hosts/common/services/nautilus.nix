@@ -13,7 +13,7 @@ in
     services.gnome.gnome-keyring.enable = true;
     programs.nautilus-open-any-terminal = {
       enable = true;
-      terminal = "kitty";
+      terminal = "alacritty";
     };
     services.gvfs.enable = true;
     services.tumbler.enable = true;
