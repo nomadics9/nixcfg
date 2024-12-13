@@ -45,7 +45,7 @@ in
       #nvidia.nvidiaPersistenced = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+      nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       #offload , Sync or reverseSync
       nvidia.prime = {
@@ -74,7 +74,8 @@ in
     virtualisation.docker = {
       enable = true;
       enableOnBoot = true;
-      #enableNvidia = true;
+      enableNvidia = true;
+      extraOptions = ''--data-root=/home/nomad/docker-data'';
     };
 
     hardware.nvidia-container-toolkit.enable = true;

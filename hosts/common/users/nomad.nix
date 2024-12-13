@@ -8,7 +8,7 @@
     ${user} = {
       initialPassword = "4321";
       isNormalUser = true;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       description = "${user}";
       extraGroups = [
         "wheel"
@@ -62,7 +62,8 @@
     package = pkgs.wireshark;
   };
 
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
+  programs.fish.enable = true;
   home-manager.users.${user} =
     import ../../../home/${user}/${config.networking.hostName}.nix;
 }

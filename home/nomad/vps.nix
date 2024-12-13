@@ -8,7 +8,7 @@
 
   features = {
     cli = {
-      zsh.enable = true;
+      fish.enable = true;
       fzf.enable = true;
       neofetch.enable = true;
     };

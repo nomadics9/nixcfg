@@ -90,12 +90,22 @@
       }
 
 
-        nmd.mov {
+        nmd.mov www.nmd.mov {
         reverse_proxy localhost:3001
       }
 
+      www.alaskar.dev alaskar.dev {
+        root * /var/www/portofolio
+        file_server
+        try_files {path} {path}.html
+        handle_errors {
+          rewrite * /404.html
+          file_server
+        }
+      }
 
-        www.nmd.mov {
+
+        log.nmd.mov {
           root * /var/www/goaccess
 
             file_server

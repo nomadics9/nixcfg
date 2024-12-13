@@ -95,8 +95,8 @@ with lib; let
     memory_display="on"
     battery_display="on"
     disk_display="on"
-    image_backend="kitty"
-    image_source="${config.home.homeDirectory}/nixcfg/assets/logo.png"
+    image_backend="chafa"
+    image_source="${config.home.homeDirectory}/dev/nixnix/nixcfg/assets/logo.png"
     ascii_distro="off"
     ascii="off"
     ascii_colors=(distro)

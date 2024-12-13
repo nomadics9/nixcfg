@@ -69,6 +69,10 @@
 
   #Hosts 
   networking.extraHosts = ''
+    10.10.11.45 vintage.htb DC01.vintage.htb
+    10.10.11.25 greenhorn.htb
+    10.10.11.31 infiltrator.htb
+    10.10.11.32 sightless.htb
   '';
 
   # Bluethooth

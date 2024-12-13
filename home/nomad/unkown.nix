@@ -10,7 +10,9 @@
 
   features = {
     cli = {
-      zsh.enable = true;
+      zsh.enable = false;
+      nushell.enable = false;
+      fish.enable = true;
       fzf.enable = true;
       neofetch.enable = true;
     };

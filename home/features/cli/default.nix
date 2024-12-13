@@ -3,12 +3,16 @@
     ./zsh.nix
     ./fzf.nix
     ./neofetch.nix
+    ./nushell.nix
+    ./fish.nix
   ];
 
   # Starship
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.bat = { enable = true; };
@@ -21,6 +25,7 @@
     tldr
     zip
     exiftool
+    chafa
     nvtopPackages.full
   ];
 }

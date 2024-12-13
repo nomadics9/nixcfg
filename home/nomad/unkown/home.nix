@@ -13,6 +13,7 @@
     # Essentials
     kitty
     alacritty
+    tmux
     firefox
     google-chrome
     age
