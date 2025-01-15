@@ -66,13 +66,13 @@
   networking.hostName = "${hostname}";
   # Enable networking
   networking.networkmanager.enable = true;
-
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
   #Hosts 
   networking.extraHosts = ''
-    10.10.11.45 vintage.htb DC01.vintage.htb
-    10.10.11.25 greenhorn.htb
-    10.10.11.31 infiltrator.htb
-    10.10.11.32 sightless.htb
+    192.168.0.200 rancher.local
   '';
 
   # Bluethooth
@@ -116,7 +116,7 @@
   services.xserver = {
     exportConfiguration = true; # link /usr/share/X11/ properly
     xkb.layout = "us,ara";
-    xkb.options = "grp:alt_shift_toggle";
+    xkb.options = "grp:alt_shift_toggle,ctrl:swapcaps";
     xkb.variant = "qwerty_digits";
   };
 
@@ -137,6 +137,7 @@
     neovim
     git
     zsh
+    nssmdns
   ];
 
   #Firewall

@@ -52,11 +52,11 @@ in
             tap-to-click = 1;
           };
 
-          sensitivity = 0.1;
+          sensitivity = 0.25;
         };
 
         general = {
-          gaps_in = 5;
+          gaps_in = 3;
           gaps_out = 5;
           border_size = 2;
           "col.active_border" = "rgba(5faaffee) rgba(5faaffee) 45deg";
@@ -172,8 +172,8 @@ in
           "$mainMod SHIFT, k, movewindow, u"
           "$mainMod SHIFT, j, movewindow, d"
 
-          "$mainMod SHIFT, t, exec, kitty --start-as=fullscreen -o 'font_size=18' --title all_is_kitty"
-          "ALT, RETURN, exec, kitty --title fly_is_kitty"
+          "$mainMod SHIFT, t, exec, alacritty --start-as=fullscreen -o 'font_size=18' --title all_is_kitty"
+          "ALT, RETURN, exec, alacritty --title fly_is_kitty"
           "$mainMod, RETURN, exec, alacritty"
 
           "$mainMod, C, killactive"
@@ -188,7 +188,7 @@ in
 
           # Screen shot
           "$mainMod, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimshot --notify copy active; hyprctl keyword animation 'fadeOut,1,4,default'"
-          "$mainMod SHIFT, S, exec, grimshot savecopy area - | swappy -f - -o ~/Photos/screenshot-$(date +'%d-%m-%Y_%H:%M').png"
+          "$mainMod SHIFT, S, exec, grimshot savecopy area - | swappy -f - -o ~/Photos/screenshots/screenshot-$(date +'%d-%m-%Y_%H%M').png"
 
           # Screen recorder
           "$mainMod SHIFT, R, exec, wf-recorder -a -f ~/Video/recording.mkv & notify-send 'Recordering Started' -i -u -A '^C ,stop' -t 0 -i ~/icons/rec-button.png"
