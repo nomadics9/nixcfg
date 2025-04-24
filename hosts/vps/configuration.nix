@@ -104,6 +104,10 @@
         }
       }
 
+      webmail.alaskar.dev {
+        reverse_proxy localhost:9002
+      }
+
 
         log.nmd.mov {
           root * /var/www/goaccess
