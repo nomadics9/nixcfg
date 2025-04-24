@@ -339,6 +339,8 @@ in
       xwaylandvideobridge
       playerctl
       brightnessctl
+      networkmanagerapplet
+      kdePackages.kdeconnect-kde
       pamixer
       pavucontrol # Volume control
       jellyfin-ffmpeg # Multimedia libs

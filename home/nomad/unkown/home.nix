@@ -18,7 +18,6 @@
     google-chrome
     age
     sops
-    networkmanagerapplet
     nvd
     # Apps
     vlc
@@ -38,7 +37,6 @@
     #nvtopPackages.full
     exiftool
     moonlight-qt
-    kdePackages.kdeconnect-kde
     cmatrix
     #jellyfin-media-player
     speedtest-go
@@ -50,7 +48,7 @@
     nim
     bun
     pocketbase
-    edgedb
+    #edgedb
     bruno
     ripgrep
     zip
@@ -104,14 +102,15 @@
   #  /etc/profiles/per-user/m3tam3re/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    BROWSER = "firefox";
+    BROWSER = "google-chrome-stable";
     EDITOR = "nvim";
-    TERMINAL = "kitty";
-    NIXOS_OZONE_WL = "1";
-    MOZ_ENABLE_WAYLAND = "1";
-    SDL_VIDEODRIVER = "wayland";
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    ELECTRON_EXTRA_FLAGS = "--force-device-scale-factor=1.5";
+    TERMINAL = "alacritty";
+    # NIXOS_OZONE_WL = "1";
+    # MOZ_ENABLE_WAYLAND = "1";
+    # SDL_VIDEODRIVER = "wayland";
+    # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    # ELECTRON_EXTRA_FLAGS = "--force-device-scale-factor=1.5";
+
     #_JAVA_AWT_WM_NONREPARENTING = "1";
     #MOZ_DRM_DEVICE = "/dev/dri/card0:/dev/dri/card1";
     #WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
@@ -123,11 +122,12 @@
     #VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
     #__NV_PRIME_RENDER_OFFLOAD = "1";
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    GTK_USE_PORTAL = "1";
-    GTK_THEME = "Nightfox-dark";
+
+    # XDG_CURRENT_DESKTOP = "Hyprland";
+    # XDG_SESSION_DESKTOP = "Hyprland";
+    # XDG_SESSION_TYPE = "wayland";
+    # GTK_USE_PORTAL = "1";
+    # GTK_THEME = "Nightfox-dark";
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
     XDG_BIN_HOME = "${config.home.homeDirectory}/.nix-profile/bin";

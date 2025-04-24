@@ -33,7 +33,7 @@
   # };
 
   # Please also change your hostname accordingly:
-  #:w
+  #
 
   # networking.hostName = "unkown"; # Define your hostname.
 

@@ -20,18 +20,18 @@ in
     };
 
 
-    dconf = {
-      enable = true;
-      settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          theme = "Nightfox-Dark";
-        };
-        "org/gnome/shell/extensions/user-theme" = {
-          theme = "Nightfox-Dark";
-        };
-      };
-    };
+    # dconf = {
+    #   enable = true;
+    #   settings = {
+    #     "org/gnome/desktop/interface" = {
+    #       color-scheme = "prefer-dark";
+    #       theme = "Nightfox-Dark";
+    #     };
+    #     "org/gnome/shell/extensions/user-theme" = {
+    #       theme = "Nightfox-Dark";
+    #     };
+    #   };
+    # };
 
     gtk = {
       enable = true;

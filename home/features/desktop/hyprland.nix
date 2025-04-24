@@ -17,6 +17,23 @@ in
           force_zero_scaling = true;
         };
 
+
+        monitor = [
+          "DP-1,highres,auto,1"
+          "eDP-1,2560x1600@60,0x0,1.25,mirror,DP-1"
+
+        ];
+        workspace = [
+          # "1, monitor:DP-1, default:true"
+          # "2, monitor:DP-1"
+          # "3, monitor:DP-1"
+          # "4, monitor:DP-1"
+          # "5, monitor:DP-1"
+          # "6, monitor:DP-1"
+          # "7, monitor:DP-1"
+        ];
+
+
         exec-once = [
           "waybar"
           "hyprpaper"
@@ -254,6 +271,5 @@ in
       };
     };
   };
-
 }
 

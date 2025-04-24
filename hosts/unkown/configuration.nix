@@ -13,12 +13,12 @@
 
   # Common
   # System
-  common.services.polkit.enable = true;
-  common.services.xdgportal.enable = true;
+  common.services.polkit.enable = false;
+  common.services.xdgportal.enable = false;
   common.services.update-report.enable = true;
   programs.nix-ld.enable = true; # Non nixos binaries such as mason LSPs
   # Filemanager
-  common.services.nautilus.enable = true;
+  common.services.nautilus.enable = false;
   # Virtual Box (Virt-Manager) and GPU Passthru. you have to configure hosts/services/vfio.nix for passthrough to work!
   common.services.vm.enable = true;
   #common.services.vfio.enable = false;
@@ -26,6 +26,36 @@
   common.services.appimage.enable = true;
   common.services.steam.enable = true;
   services.flatpak.enable = true;
+
+  # Gnomede exclude these packages
+  services.xserver = {
+    desktopManager.gnome = {
+      enable = true;
+      extraGSettingsOverridePackages = [ pkgs.mutter ];
+      extraGSettingsOverrides = ''
+        [org.gnome.mutter]
+        experimental-features=['scale-monitor-framebuffer']
+      '';
+    };
+  };
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+  environment.gnome.excludePackages = with pkgs; [
+    cheese # photo booth
+    epiphany # web browser
+    simple-scan # document scanner
+    totem # video player
+    yelp # help viewer
+    geary # email client
+
+    # these should be self explanatory
+    gnome-contacts
+    gnome-music
+    gnome-photos
+  ];
+
 
   # Sops secrets Comment this out if you dont need secrets! and configure ur user in hosts/common/users/YOURUSERNAME.nix
   sops = {
@@ -81,7 +111,7 @@
 
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -117,7 +147,7 @@
     exportConfiguration = true; # link /usr/share/X11/ properly
     xkb.layout = "us,ara";
     xkb.options = "grp:alt_shift_toggle,ctrl:swapcaps";
-    xkb.variant = "qwerty_digits";
+    xkb.variant = "intl,";
   };
 
   # Enable CUPS to print documents.
